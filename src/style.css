@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caprasimo&display=swap");
+body {
+  background-color: #fffafa;
+  padding: 5px;
+}
+body header {
+  border-bottom: 1px solid;
+}
+body header .recomanacions-block {
+  display: flex;
+  align-items: start;
+  gap: 0.5rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  border-bottom: 3px solid;
+  padding-bottom: 5px;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+body header .recomanacions-block .square {
+  width: 1rem;
+  height: 1rem;
+  background-color: #eb735a;
+  transform: translateY(-1px);
+}
+body .main-page-content h1 {
+  font-family: "Open Sans", sans-serif;
+  font-style: italic;
+}
+body .main-page-content .main-article {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0) 30%, rgb(0, 0, 0) 600px), url("https://media.diariouno.com.ar/p/2b6588b20e5821fc402172c6cb7b8147/adjuntos/298/imagenes/009/380/0009380455/1200x0/smart/netflix-yo-soy-simon2jpg.jpg");
+  background-size: contain;
+  background-position-x: right;
+  background-repeat: no-repeat;
+  color: #ffffff;
+  border-radius: 30px;
+  padding: 20px 30px;
+}
+body .main-page-content .main-article .article-header {
+  display: flex;
+  justify-content: space-between;
+}
+body .main-page-content .main-article .article-header .recomanacio {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.65rem;
+  background-color: #eb735a;
+  border-radius: 3px;
+  padding: 2px 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: -moz-max-content;
+  height: max-content;
+}
+body .main-page-content .main-article .article-header .edat {
+  color: #000000;
+  background-color: #ffffff;
+  font-family: "Arial";
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 10px;
+}
+body .main-page-content .main-article .article-content .titol {
+  font-family: "Caprasimo", serif;
+  font-style: normal;
+  font-size: 1.5rem;
+  font-weight: normal;
+  width: 200px;
+}
+
+@media (max-width: 800px) {
+  body .main-page-content .main-article {
+    background-size: cover;
+  }
+}/*# sourceMappingURL=style.css.map */
