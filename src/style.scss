@@ -6,10 +6,16 @@ $bg-color: #fffafa;
 $orange: #eb735a;
 $progress_bg: #e6e6e1;
 $question_gray: #c3c3c3;
-// $simon_url: "https://media.diariouno.com.ar/p/2b6588b20e5821fc402172c6cb7b8147/adjuntos/298/imagenes/009/380/0009380455/1200x0/smart/netflix-yo-soy-simon2jpg.jpg";
-$simon_width: 1200px;
-$simon_height: 675px;
-$simon_aspectRatio: $simon_width / $simon_height;
+
+// $simon_width: 1200px;
+// $simon_height: 675px;
+// $simon_aspectRatio: $simon_width / $simon_height;
+
+$article_max_width: 800px;
+$article_gap: 20px;
+$article_max_width_2: calc(($article_max_width) + $article_gap * 4);
+$small_screen_width: 500px;
+$smaller_screen_width: 400px;
 
 @mixin img-bg($height) {
   position: absolute;
@@ -51,6 +57,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 20px;
 
     h1 {
       font-family: 'Open Sans', sans-serif;
@@ -58,28 +65,40 @@ body {
       align-self: flex-start;
     }
 
-    .main-article {
+    .main-article,
+    .secondary-article {
       .simon-background {
         @include img-bg(100%);
         
+        @media (max-width: $article_max_width) {
+          right: -20%;
+        }
+        
+        @media (max-width: $smaller_screen_width) {
+          right: -80%;
+        }
       }
 
-      background: linear-gradient(to left, rgba(0, 0, 0, 0) 30%, rgb(0, 0, 0) $simon_width/2);
+      @media (max-width: $small_screen_width) {
+        width: 95%;
+        padding: 20px 10px;
+      }
+
+      background: linear-gradient(to left, rgba(0, 0, 0, 0) 30%, rgb(0, 0, 0) $article_max_width*0.65);
       // url(#{$simon_url});
       display: inline-block;
       color: #ffffff;
       border-radius: 30px;
       padding: 20px 30px;
       position: relative;
-      height: 360px;
-      // background-color: blue;
-      // object-position: 50% 50%;
+      min-height: 360px;
+      max-width: $article_max_width + $article_gap * 2;
       overflow: hidden;
 
       .article-header {
         display: flex;
         justify-content: space-between;
-
+        
         .recomanacio {
           font-family: 'Montserrat', sans-serif;
           font-size: 0.65rem;
@@ -107,6 +126,10 @@ body {
         font-family: 'Open Sans', sans-serif;
         font-size: 0.8rem;
         width: 55%;
+        
+        @media (max-width: $small_screen_width) {
+          width: 100%;
+        }
 
         .titol {
           font-family: 'Caprasimo', sans-serif;
@@ -126,6 +149,7 @@ body {
 
         .sinopsi {
           margin-bottom: 20px;
+          line-height: 1.6;
         }
 
         .dades {
@@ -200,9 +224,15 @@ body {
               }
             }
 
-            .ambits {
+            .ambits,
+            .temes {
               display: flex;
               margin-top: $table_adjust;
+
+              @media (max-width: calc($small_screen_width - 150px) ) {
+                // display: block;
+                font-size: 80%;
+              }
               
               ul {
                 list-style: none;
@@ -220,16 +250,111 @@ body {
         }
       }
     }
-  }
-}
 
-@media (max-width: 800px) {
-  body {
-    .main-page-content {
-      .main-article {
-        .simon-background {
+    .articulos-secundarios {
+      display: flex;
+      gap: $article_gap;
+      justify-content: center;
+      margin: 0px 10px;
+      // background-color: red;
+      
+      @media (max-width: $article_max_width_2) {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .secondary-article {
+        background: none;
+        border-radius: 10px;
+        // width: 100%;
+        width: ($article_max_width / 2) - $article_gap;
+        // backgroun  d-color: blue;
+
+        @media (max-width: $article_max_width_2) {
+          width: calc(100vw - $article_gap*5)
+        }
+
+        @media (max-width: $small_screen_width) {
+          width: calc(100vw - $article_gap*2.5)
+        }
+
+        .everything-background {
           @include img-bg(100%);
-          right: -50%;
+          left: -20%;
+
+          @media (max-width: $article_max_width_2) {
+            @include img-bg(100vw)
+          }
+
+          @media (max-width: $smaller_screen_width) {
+            @include img-bg(100%)
+          }
+        }
+
+        .jamie-background {
+          @include img-bg(120%);
+          left: 0;
+
+          @media (max-width: $article_max_width_2) {
+            @include img-bg(100vw)
+          }
+
+          @media (max-width: $smaller_screen_width) {
+            @include img-bg(100%)
+          }
+        }
+        .article-content {
+          width: 100%;
+
+          .titol {
+            font-family: 'Open Sans', sans-serif;
+            font-style: italic;
+          }
+
+          .movie-info {
+            display: none;
+            position: absolute;
+            bottom: 0;
+            margin-right: 30px;
+
+            @media (max-width: $small_screen_width) {
+              width: 80%;
+            }
+
+            .dades {
+              display: flex;
+              justify-content: center;
+
+              tr {
+                .tabla-valoracio {
+                  margin-right: 50px;
+
+                  @media (max-width: $small_screen_width) {
+                    margin-right: auto;
+                  }
+                }
+
+                .temes {
+                  ul {
+                    width: fit-content;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        &:hover .article-content .movie-info {
+          display: block;
+        }
+        &:hover .article-header,
+        &:hover .article-content .titol,
+        &:hover .article-content .etiquetes {
+          display: none;
+        }
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.5)
         }
       }
     }
