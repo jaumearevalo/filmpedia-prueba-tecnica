@@ -4,7 +4,21 @@
 
 $bg-color: #fffafa;
 $orange: #eb735a;
+$progress_bg: #e6e6e1;
+$question_gray: #c3c3c3;
+// $simon_url: "https://media.diariouno.com.ar/p/2b6588b20e5821fc402172c6cb7b8147/adjuntos/298/imagenes/009/380/0009380455/1200x0/smart/netflix-yo-soy-simon2jpg.jpg";
 $simon_width: 1200px;
+$simon_height: 675px;
+$simon_aspectRatio: $simon_width / $simon_height;
+
+@mixin img-bg($height) {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  top: 0;
+  right: 0;
+  height: $height;
+}
 
 body {
   background-color: $bg-color;
@@ -26,6 +40,7 @@ body {
       gap: 0.5rem;
       font-family: Arial, Helvetica, sans-serif;
       font-weight: bold;
+      text-transform: uppercase;
       border-bottom: 3px solid;
       padding-bottom: 5px;
       width: fit-content;
@@ -33,20 +48,33 @@ body {
   }
 
   .main-page-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     h1 {
       font-family: 'Open Sans', sans-serif;
       font-style: italic;
+      align-self: flex-start;
     }
 
     .main-article {
-      background: linear-gradient(to left, rgba(0, 0, 0, 0) 30%, rgb(0, 0, 0) $simon_width/2),
-      url("https://media.diariouno.com.ar/p/2b6588b20e5821fc402172c6cb7b8147/adjuntos/298/imagenes/009/380/0009380455/1200x0/smart/netflix-yo-soy-simon2jpg.jpg");
-      background-size: contain;
-      background-position-x: right;
-      background-repeat: no-repeat;
+      .simon-background {
+        @include img-bg(100%);
+        
+      }
+
+      background: linear-gradient(to left, rgba(0, 0, 0, 0) 30%, rgb(0, 0, 0) $simon_width/2);
+      // url(#{$simon_url});
+      display: inline-block;
       color: #ffffff;
       border-radius: 30px;
       padding: 20px 30px;
+      position: relative;
+      height: 360px;
+      // background-color: blue;
+      // object-position: 50% 50%;
+      overflow: hidden;
 
       .article-header {
         display: flex;
@@ -76,12 +104,119 @@ body {
       }
 
       .article-content {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 0.8rem;
+        width: 55%;
+
         .titol {
-          font-family: 'Caprasimo', serif;
+          font-family: 'Caprasimo', sans-serif;
           font-style: normal;
           font-size: 1.5rem;
-          font-weight: normal;
+          font-weight: lighter;
           width: 200px;
+          margin-bottom: 10px;
+          margin-top: 0;
+        }
+
+        .etiquetes {
+          font-weight: bold;
+          width: 50%;
+          margin-bottom: 20px;
+        }
+
+        .sinopsi {
+          margin-bottom: 20px;
+        }
+
+        .dades {
+          // background-color: red;
+          text-align: left;
+          
+          tr {
+            th {
+              text-transform: uppercase;
+              font-weight: normal;
+              font-size: 0.8rem;
+
+              .valoracio-header {
+                display: flex;
+                // justify-content: space-between;
+              }
+
+              .rate {
+                background-color: $question_gray;
+                color: #000000;
+                font-weight: bold;
+                border-radius: 5px;
+                padding: 7px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 10px;
+                height: 10px;
+                position: relative;
+                left: 30px;
+                bottom: 5px;
+              }
+            }
+
+            // background-color: blue;
+            $table_adjust: -10px;
+
+            td {
+              margin-left: 0;
+              padding-left: 0;
+              margin-top: -10px;
+              font-family: 'Montserrat', serif;
+              font-size: 0.75rem;
+
+              .tabla-valoracio {
+                margin-top: $table_adjust;
+              }
+              
+              progress {
+                appearance: none;
+                border-radius: 10px;
+                height: 7px;
+                overflow: hidden;
+                background-color: $orange;
+                display: flex;
+                align-self: center;
+                width: 80px;
+                margin: 5px 10px;
+
+                &::-webkit-progress-bar {
+                  background-color: $progress_bg;
+                }
+
+                &::-webkit-progress-value {
+                  background: $orange;
+                }
+
+                &::-moz-progress-bar {
+                  background: $orange;
+                  background-color: $progress_bg;
+                }
+              }
+            }
+
+            .ambits {
+              display: flex;
+              margin-top: $table_adjust;
+              
+              ul {
+                list-style: none;
+                padding-left: 0;
+                margin-left: 0;
+                text-align: left;
+                width: 50%;
+
+                li {
+                  margin: 5px 2px;
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -90,8 +225,12 @@ body {
 
 @media (max-width: 800px) {
   body {
-    .main-page-content {.main-article {
-        background-size: cover;
+    .main-page-content {
+      .main-article {
+        .simon-background {
+          @include img-bg(100%);
+          right: -50%;
+        }
       }
     }
   }

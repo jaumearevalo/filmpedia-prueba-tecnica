@@ -14,6 +14,7 @@ body header .recomanacions-block {
   gap: 0.5rem;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
+  text-transform: uppercase;
   border-bottom: 3px solid;
   padding-bottom: 5px;
   width: -moz-fit-content;
@@ -25,18 +26,33 @@ body header .recomanacions-block .square {
   background-color: #eb735a;
   transform: translateY(-1px);
 }
+body .main-page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 body .main-page-content h1 {
   font-family: "Open Sans", sans-serif;
   font-style: italic;
+  align-self: flex-start;
 }
 body .main-page-content .main-article {
-  background: linear-gradient(to left, rgba(0, 0, 0, 0) 30%, rgb(0, 0, 0) 600px), url("https://media.diariouno.com.ar/p/2b6588b20e5821fc402172c6cb7b8147/adjuntos/298/imagenes/009/380/0009380455/1200x0/smart/netflix-yo-soy-simon2jpg.jpg");
-  background-size: contain;
-  background-position-x: right;
-  background-repeat: no-repeat;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0) 30%, rgb(0, 0, 0) 600px);
+  display: inline-block;
   color: #ffffff;
   border-radius: 30px;
   padding: 20px 30px;
+  position: relative;
+  height: 360px;
+  overflow: hidden;
+}
+body .main-page-content .main-article .simon-background {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  top: 0;
+  right: 0;
+  height: 100%;
 }
 body .main-page-content .main-article .article-header {
   display: flex;
@@ -63,16 +79,110 @@ body .main-page-content .main-article .article-header .edat {
   padding: 10px;
   border-radius: 10px;
 }
+body .main-page-content .main-article .article-content {
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.8rem;
+  width: 55%;
+}
 body .main-page-content .main-article .article-content .titol {
-  font-family: "Caprasimo", serif;
+  font-family: "Caprasimo", sans-serif;
   font-style: normal;
   font-size: 1.5rem;
-  font-weight: normal;
+  font-weight: lighter;
   width: 200px;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+body .main-page-content .main-article .article-content .etiquetes {
+  font-weight: bold;
+  width: 50%;
+  margin-bottom: 20px;
+}
+body .main-page-content .main-article .article-content .sinopsi {
+  margin-bottom: 20px;
+}
+body .main-page-content .main-article .article-content .dades {
+  text-align: left;
+}
+body .main-page-content .main-article .article-content .dades tr th {
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 0.8rem;
+}
+body .main-page-content .main-article .article-content .dades tr th .valoracio-header {
+  display: flex;
+}
+body .main-page-content .main-article .article-content .dades tr th .rate {
+  background-color: #c3c3c3;
+  color: #000000;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 10px;
+  position: relative;
+  left: 30px;
+  bottom: 5px;
+}
+body .main-page-content .main-article .article-content .dades tr td {
+  margin-left: 0;
+  padding-left: 0;
+  margin-top: -10px;
+  font-family: "Montserrat", serif;
+  font-size: 0.75rem;
+}
+body .main-page-content .main-article .article-content .dades tr td .tabla-valoracio {
+  margin-top: -10px;
+}
+body .main-page-content .main-article .article-content .dades tr td progress {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 10px;
+  height: 7px;
+  overflow: hidden;
+  background-color: #eb735a;
+  display: flex;
+  align-self: center;
+  width: 80px;
+  margin: 5px 10px;
+}
+body .main-page-content .main-article .article-content .dades tr td progress::-webkit-progress-bar {
+  background-color: #e6e6e1;
+}
+body .main-page-content .main-article .article-content .dades tr td progress::-webkit-progress-value {
+  background: #eb735a;
+}
+body .main-page-content .main-article .article-content .dades tr td progress::-moz-progress-bar {
+  background: #eb735a;
+  background-color: #e6e6e1;
+}
+body .main-page-content .main-article .article-content .dades tr .ambits {
+  display: flex;
+  margin-top: -10px;
+}
+body .main-page-content .main-article .article-content .dades tr .ambits ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+  text-align: left;
+  width: 50%;
+}
+body .main-page-content .main-article .article-content .dades tr .ambits ul li {
+  margin: 5px 2px;
 }
 
 @media (max-width: 800px) {
-  body .main-page-content .main-article {
-    background-size: cover;
+  body .main-page-content .main-article .simon-background {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    top: 0;
+    right: 0;
+    height: 100%;
+    right: -50%;
   }
 }/*# sourceMappingURL=style.css.map */
